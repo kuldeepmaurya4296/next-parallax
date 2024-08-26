@@ -1,0 +1,132 @@
+"use client";
+import Image from "next/image";
+import Image1 from "../../public/images/image1.jpg";
+import Image2 from "../../public/images/image2.jpg";
+import Image3 from "../../public/images/image3.jpg";
+import Image4 from "../../public/images/image4.jpg";
+import Image5 from "../../public/images/image5.jpg";
+import Image6 from "../../public/images/image6.jpg";
+import Image7 from "../../public/images/image7.jpg";
+import { useScroll, useTransform, motion } from "framer-motion";
+import Styles from "./paralaxx.module.css";
+import { useRef } from "react";
+
+export default function Paralaxx() {
+  const container = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+
+
+  const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
+  const scale5 = useTransform(scrollYProgress, [0, 1], [1, 5]);
+  const scale6 = useTransform(scrollYProgress, [0, 1], [1, 6]);
+  const scale7 = useTransform(scrollYProgress, [0, 1], [1, 7]);
+  const scale8 = useTransform(scrollYProgress, [0, 1], [1, 8]);
+  const scale9 = useTransform(scrollYProgress, [0, 1], [1, 9]);
+  const pictures = [
+    {
+      src: Image1,
+      scale: scale4,
+    },
+    {
+      src: Image2,
+      scale: scale5,
+      top: '10px',
+      left:'80vh'
+    },
+    {
+      src: Image3,
+      scale: scale6,
+      top: '50px',
+      left:'10vh'
+    },
+    {
+      src: Image4,
+      scale: scale7,
+      top: '67vh',
+      left:'80vh'
+    },
+    {
+      src: Image5,
+      scale: scale5,
+      top: '50vh',
+      left:'70vw'
+    },
+    {
+      src: Image6,
+      scale: scale9,
+      top: '40vh',
+      left:'10vh'
+    },
+    {
+      src: Image7,
+      scale: scale5,
+      top: '10vh',
+      left:'70vw'
+    }
+  ];
+
+  return (
+    <div ref={container} className={Styles.container}>
+      <div className={Styles.sticky}>
+
+        <div className={Styles.el}>
+
+          {pictures.map(({ src, scale, top, left }, index) => {
+            return <motion.div  key={index} style={{ scale: scale,top:top,left:left }}  className={Styles.imagecontainer}>
+              <Image
+                src={src}
+                fill
+                placeholder="blur"
+                className={Styles.image}
+              />
+            </motion.div>;
+          })}
+        </div>
+      </div>
+      
+    </div>
+  )
+}
+
+
+
+.container{
+    height: 300vh;
+    position: relative;
+
+    .sticky{
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        background-color: rgb(112, 112, 25);
+        overflow: hidden;
+    }
+    
+    .el{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(230, 135, 135);
+
+        .imagecontainer{
+            width: 25vw;
+            height: 25vh;
+            position: absolute;
+            background-color: blue;
+            .image{
+                object-fit: cover;
+            }
+
+            
+        }
+        
+    }
+}
