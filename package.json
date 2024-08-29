@@ -9,11 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/fiber": "^8.2.2",
     "@studio-freight/lenis": "^1.0.42",
     "framer-motion": "^11.3.30",
+    "framer-motion-3d": "^11.2.0",
     "next": "14.2.6",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "remixicon-react": "^1.0.0",
+    "three": "^0.137.0"
   },
   "devDependencies": {
     "postcss": "^8",
